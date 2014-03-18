@@ -20,6 +20,10 @@ var UserSchema = new Schema({
         type: String,
         unique: true
     },
+    role: {
+        type: String,
+        default: 'user'
+    },
     hashed_password: String,
     provider: String,
     salt: String,
@@ -53,25 +57,25 @@ UserSchema.path('name').validate(function(name) {
     // If you are authenticating by any of the oauth strategies, don't validate.
     if (!this.provider) return true;
     return (typeof name === 'string' && name.length > 0);
-}, 'Name cannot be blank');
+}, 'Le nom ne peut être vide');
 
 UserSchema.path('email').validate(function(email) {
     // If you are authenticating by any of the oauth strategies, don't validate.
     if (!this.provider) return true;
     return (typeof email === 'string' && email.length > 0);
-}, 'Email cannot be blank');
+}, 'L\'email ne peut être vide');
 
 UserSchema.path('username').validate(function(username) {
     // If you are authenticating by any of the oauth strategies, don't validate.
     if (!this.provider) return true;
     return (typeof username === 'string' && username.length > 0);
-}, 'Username cannot be blank');
+}, 'L\'utilisateur ne peut être vide');
 
 UserSchema.path('hashed_password').validate(function(hashed_password) {
     // If you are authenticating by any of the oauth strategies, don't validate.
     if (!this.provider) return true;
     return (typeof hashed_password === 'string' && hashed_password.length > 0);
-}, 'Password cannot be blank');
+}, 'Le mot de passe ne peut être vide');
 
 
 /**
@@ -81,7 +85,7 @@ UserSchema.pre('save', function(next) {
     if (!this.isNew) return next();
 
     if (!validatePresenceOf(this.password) && !this.provider)
-        next(new Error('Invalid password'));
+        next(new Error('Mot de passe invalide'));
     else
         next();
 });
