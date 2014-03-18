@@ -3,10 +3,9 @@
         <li>
             <a class="navbar-brand" href="/">Quiz</a>
         </li>
-        <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
-            <a href="#!/{{item.link}}">{{item.title}}</a>
-        </li>
+        <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute, dropdown: item.submenu}" menu-item="item"></li>
     </ul>
+
     <ul class="navbar-nav nav pull-right" data-ng-hide="global.authenticated">
         <li><a href="signup">Inscription</a>
         </li>
@@ -20,7 +19,8 @@
                 {{global.user.name}} <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="/signout">Déconnexion</a>
+                <li>
+                  <a href="/signout">Déconnexion</a>
                 </li>
             </ul>
         </li>

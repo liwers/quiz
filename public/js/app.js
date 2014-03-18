@@ -1,6 +1,4 @@
 'use strict';
 
-angular.module('mean', ['ngCookies', 'ngResource', 'ui.bootstrap', 'ui.router', 'mean.system', 'mean.articles']);
+var app = angular.module('app', ['ngCookies', 'ngResource', 'ui.bootstrap', 'ui.router']);
 
-angular.module('mean.system', []);
-angular.module('mean.articles', []);
