@@ -61,10 +61,10 @@ exports.create = function(req, res, next) {
             switch (err.code) {
                 case 11000:
                 case 11001:
-                    message = 'Username already exists';
+                    message = 'Cet utilisateur existe déjà';
                     break;
                 default:
-                    message = 'Please fill all the required fields';
+                    message = 'Merci de remplir tous les champs obligatoires';
             }
 
             return res.render('users/signup', {
@@ -96,7 +96,7 @@ exports.user = function(req, res, next, id) {
         })
         .exec(function(err, user) {
             if (err) return next(err);
-            if (!user) return next(new Error('Failed to load User ' + id));
+            if (!user) return next(new Error('Erreur de chargement de l\'utilisateur ' + id));
             req.profile = user;
             next();
         });

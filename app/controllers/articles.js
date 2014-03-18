@@ -14,7 +14,7 @@ var mongoose = require('mongoose'),
 exports.article = function(req, res, next, id) {
     Article.load(id, function(err, article) {
         if (err) return next(err);
-        if (!article) return next(new Error('Failed to load article ' + id));
+        if (!article) return next(new Error('Erreur de chargement de l\'article ' + id));
         req.article = article;
         next();
     });
