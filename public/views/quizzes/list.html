@@ -1,0 +1,10 @@
+<section data-ng-controller="QuizzesController" data-ng-init="find()">
+    <ul class=" unstyled">
+        <li data-ng-repeat="quiz in quizzes">
+            <span>{{quiz.user.name}}</span>
+            <h2><a data-ng-href="#!/quizzes/{{quiz._id}}">{{quiz.title}}</a></h2>
+            <div>{{quiz.description}}</div>
+        </li>
+    </ul>
+    <h1 data-ng-hide="!quizzes || quizzes.length">Pas encore de quizz. <br> Pourquoi ne pas en <a href="/#!/quizzes/create">Créer un</a>?</h1>
+</section>

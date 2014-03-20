@@ -1,0 +1,13 @@
+<section data-ng-controller="QuizzesController" data-ng-init="findOne()">
+    <span>{{quiz.user.name}}</span>
+    <h2>{{quiz.title}}</h2>
+    <div data-ng-show="global.user._id == quiz.user._id">
+        <a class="btn" href="/#!/quizzes/{{quiz._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn" data-ng-click="remove();">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+    <div>{{quiz.description}}</div>
+</section>

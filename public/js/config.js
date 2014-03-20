@@ -5,31 +5,50 @@ app.config(['$stateProvider', '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider) {
     // For unmatched routes:
     $urlRouterProvider
-        .when('/test', '/articles')
+        //.when('/test', '/articles')
         .otherwise('/');
 
     // states for my app
     $stateProvider
-      .state('all articles', {
-        url: '/articles',
-        templateUrl: 'views/articles/list.html'
-    })
-      .state('create article', {
-        url: '/articles/create',
-        templateUrl: 'views/articles/create.html'
-    })
-      .state('edit article', {
-        url: '/articles/:articleId/edit',
-        templateUrl: 'views/articles/edit.html'
-    })
-      .state('article by id', {
-        url: '/articles/:articleId',
-        templateUrl: 'views/articles/view.html'
-    })
-      .state('home', {
-        url: '/',
-        templateUrl: 'views/index.html'
-    });
+        // Articles
+        .state('all articles', {
+            url: '/articles',
+            templateUrl: 'views/articles/list.html'
+        })
+        .state('create article', {
+            url: '/articles/create',
+            templateUrl: 'views/articles/create.html'
+        })
+        .state('edit article', {
+            url: '/articles/:articleId/edit',
+            templateUrl: 'views/articles/edit.html'
+        })
+        .state('article by id', {
+            url: '/articles/:articleId',
+            templateUrl: 'views/articles/view.html'
+        })
+        // Quizzes
+        .state('all quizzes', {
+            url: '/quizzes',
+            templateUrl: 'views/quizzes/list.html'
+        })
+        .state('create quiz', {
+            url: '/quizzes/create',
+            templateUrl: 'views/quizzes/create.html'
+        })
+        .state('edit quiz', {
+            url: '/quizzes/:quizId/edit',
+            templateUrl: 'views/quizzes/edit.html'
+        })
+        .state('quiz by id', {
+            url: '/quizzes/:quizId',
+            templateUrl: 'views/quizzes/view.html'
+        })
+        // Home
+        .state('home', {
+            url: '/',
+            templateUrl: 'views/index.html'
+        });
 }
 ]);
 
