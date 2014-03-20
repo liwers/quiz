@@ -4,97 +4,96 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    Quiz = mongoose.model('Quiz'),
+    Question = mongoose.model('Question'),
     _ = require('lodash');
 
 
 /**
- * Find quiz by id
+ * Find question by id
  */
-exports.quiz = function(req, res, next, id) {
-    Quiz.load(id, function(err, quiz) {
+exports.question = function(req, res, next, id) {
+    Question.load(id, function(err, question) {
         if (err) return next(err);
-        if (!quiz) return next(new Error('Erreur de chargement du quiz ' + id));
-        req.quiz = quiz;
+        if (!question) return next(new Error('Erreur de chargement du question ' + id));
+        req.question = question;
         next();
     });
 };
 
 /**
- * Create a quiz
+ * Create a question
  */
 exports.create = function(req, res) {
-    var quiz = new Quiz(req.body);
-    quiz.user = req.user;
+    var question = new Question(req.body);
 
-    quiz.save(function(err) {
+    question.save(function(err) {
         if (err) {
             return res.send('users/signup', {
                 errors: err.errors,
-                quiz: quiz
+                question: question
             });
         } else {
-            res.jsonp(quiz);
+            res.jsonp(question);
         }
     });
 };
 
 /**
- * Update a quiz
+ * Update a question
  */
 exports.update = function(req, res) {
-    var quiz = req.quiz;
+    var question = req.question;
 
-    quiz = _.extend(quiz, req.body);
+    question = _.extend(question, req.body);
 
-    quiz.save(function(err) {
+    question.save(function(err) {
         if (err) {
             return res.send('users/signup', {
                 errors: err.errors,
-                quiz: quiz
+                question: question
             });
         } else {
-            res.jsonp(quiz);
+            res.jsonp(question);
         }
     });
 };
 
 /**
- * Delete a quiz
+ * Delete a question
  */
 exports.destroy = function(req, res) {
-    var quiz = req.quiz;
+    var question = req.question;
 
-    quiz.remove(function(err) {
+    question.remove(function(err) {
         if (err) {
             return res.send('users/signup', {
                 errors: err.errors,
-                quiz: quiz
+                question: question
             });
         } else {
-            res.jsonp(quiz);
+            res.jsonp(question);
         }
     });
 };
 
 /**
- * Show a quiz
+ * Show a question
  */
 exports.show = function(req, res) {
-    res.jsonp(req.quiz);
+    res.jsonp(req.question);
 };
 
 /**
- * List of quizzes
+ * List of questions
  */
 exports.all = function(req, res) {
-    Quiz.find().sort('-created').populate('user', 'name username').exec(function(err, quizzes) {
+    Question.find().exec(function(err, questions) {
         if (err) {
             res.render('error', {
                 status: 500
             });
         } else {
-            res.jsonp(quizzes);
+            res.jsonp(questions);
         }
     });
 };
