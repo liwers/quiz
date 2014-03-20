@@ -3,7 +3,16 @@
 app.controller('HeaderController', ['$scope', 'Global', function ($scope, Global) {
     $scope.global = Global;
 
-    $scope.menu = [
+    //menu pour utilisateur non authentifé
+    var menuAll  = [
+      {
+        'title': 'Articles',
+        'link': 'articles'
+      }
+    ];
+
+    //menu pour utilisateur authentié
+    var menuUser = [
       {
         'title': 'Articles',
         'submenu': [
@@ -18,6 +27,15 @@ app.controller('HeaderController', ['$scope', 'Global', function ($scope, Global
         ]
       }
     ];
+
+    switch (Global.authenticated) {
+        case true:
+            $scope.menu = menuUser;
+            break;
+        default:
+            $scope.menu= menuAll;
+            break;
+    }
 
     $scope.isCollapsed = false;
 }]);

@@ -3,7 +3,7 @@
         <li>
             <a class="navbar-brand" href="/">Quiz</a>
         </li>
-        <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute, dropdown: item.submenu}" menu-item="item"></li>
+        <li data-ng-repeat="item in menu" ui-route="/{{item.link}}" ng-class="{active: $uiRoute, dropdown: item.submenu}" menu-item="item"></li>
     </ul>
 
     <ul class="navbar-nav nav pull-right" data-ng-hide="global.authenticated">
