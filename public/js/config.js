@@ -50,6 +50,12 @@ app.config(['$stateProvider', '$urlRouterProvider',
             templateUrl: 'views/questions/view.html'
         })
 
+        // Users
+        .state('all users', {
+            url: '/users',
+            templateUrl: 'views/users/list.html'
+        })
+
         // Home
         .state('home', {
             url: '/',

@@ -14,6 +14,10 @@ app.controller('HeaderController', ['$scope', 'Global', function ($scope, Global
     //menu pour utilisateur authentié
     var menuUser = [
         {
+            'title': 'Utilisateurs',
+            'link': 'users'
+        },
+        {
             'title': 'Quiz',
             'submenu': [
                 {

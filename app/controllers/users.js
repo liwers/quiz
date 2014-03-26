@@ -108,9 +108,7 @@ exports.user = function(req, res, next, id) {
 exports.all = function(req, res) {
     User.find().exec(function(err, users) {
         if (err) {
-            res.render('error', {
-                status: 500
-            });
+            return res.send(500, err);
         } else {
             res.jsonp(users);
         }
@@ -127,10 +125,7 @@ exports.update = function(req, res) {
 
     user.save(function(err) {
         if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                user: user
-            });
+            return res.send(500, err);
         } else {
             res.jsonp(user);
         }
@@ -145,10 +140,7 @@ exports.destroy = function(req, res) {
 
     user.remove(function(err) {
         if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                user: user
-            });
+            return res.send(500, err);
         } else {
             res.jsonp(user);
         }
