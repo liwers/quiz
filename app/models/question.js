@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
  */
 var QuestionSchema = new Schema({
     question: String,
-    type: {
+    kind: {
         type: String,
         default: 'text'
     },
@@ -20,7 +20,8 @@ var QuestionSchema = new Schema({
         isCorrect: Boolean
     }],
     file: String,
-    tags: [String]
+    tags: [String],
+    explain: String
 });
 
 /**

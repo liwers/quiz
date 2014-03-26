@@ -17,6 +17,7 @@ module.exports = function(app) {
     app.get('/quizzes', quizzes.all);
     app.post('/quizzes', authorization.requiresLogin, quizzes.create);
     app.get('/quizzes/:quizId', quizzes.show);
+    app.get('/quizzes/:quizId/questionsnin', quizzes.getQuestionsByIds);
     app.put('/quizzes/:quizId', authorization.requiresLogin, hasAuthorization, quizzes.update);
     app.del('/quizzes/:quizId', authorization.requiresLogin, hasAuthorization, quizzes.destroy);
 

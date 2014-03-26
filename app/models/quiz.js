@@ -9,22 +9,21 @@ var mongoose = require('mongoose'),
 /**
  * Quizz Schema
  */
-var QuizSchema = new Schema(
-    {
-        title: {
-            type: String,
-            trim: true
-        },
-        description: String,
-        user: {
-            type: Schema.ObjectId,
-            ref: 'User'
-        },
-        questions: [{
-                type: Schema.ObjectId,
-                ref: 'Question'
-            }]
-        });
+var QuizSchema = new Schema({
+    title: {
+        type: String,
+        trim: true
+    },
+    description: String,
+    user: {
+        type: Schema.ObjectId,
+        ref: 'User'
+    },
+    questions: [{
+        type: Schema.ObjectId,
+        ref: 'Question'
+    }]
+});
 
 /**
  * Validations
@@ -39,7 +38,12 @@ QuizSchema.path('title').validate(function(title) {
 QuizSchema.statics.load = function(id, cb) {
     this.findOne({
         _id: id
-    }).populate('user', 'name username').populate('question').exec(cb);
+    }).populate('user', 'name username').populate('questions').exec(cb);
+};
+QuizSchema.statics.loadQuestionsId = function(id, cb) {
+    this.findOne({
+        _id: id
+    }).populate('questions', '_id').exec(cb);
 };
 
 mongoose.model('Quiz', QuizSchema);

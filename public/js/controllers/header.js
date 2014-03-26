@@ -42,6 +42,19 @@ app.controller('HeaderController', ['$scope', 'Global', function ($scope, Global
                     'link': 'quizzes/create'
                 }
             ]
+        },
+        {
+            'title': 'Questions',
+            'submenu': [
+                {
+                    'title': 'Liste',
+                    'link': 'questions'
+                },
+                {
+                    'title': 'Créer une nouvelle question',
+                    'link': 'questions/create'
+                }
+            ]
         }
     ];
 

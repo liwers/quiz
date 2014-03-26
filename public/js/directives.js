@@ -1,5 +1,6 @@
 'use strict';
 
+// Sous menu
 app.directive('menuItem', function ($compile) {
 
     var getTemplate = function(item) {
@@ -33,5 +34,13 @@ app.directive('menuItem', function ($compile) {
         scope: {
             item:'=menuItem'
         }
+    };
+});
+
+// Limite d'affichage
+app.directive('searchlimit', function() {
+    return {
+      restrict: "E",
+      templateUrl: "views/common/limitselect.html"
     };
 });

@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
     Quiz = mongoose.model('Quiz'),
+    Question = mongoose.model('Question'),
     _ = require('lodash');
 
 
@@ -13,8 +14,12 @@ var mongoose = require('mongoose'),
  */
 exports.quiz = function(req, res, next, id) {
     Quiz.load(id, function(err, quiz) {
-        if (err) return next(err);
-        if (!quiz) return next(new Error('Erreur de chargement du quiz ' + id));
+        if (err) {
+            return res.send(500, err);
+        }
+        if (!quiz) {
+            return next(new Error('Erreur de chargement du quiz ' + id));
+        }
         req.quiz = quiz;
         next();
     });
@@ -44,17 +49,20 @@ exports.create = function(req, res) {
  */
 exports.update = function(req, res) {
     var quiz = req.quiz;
-
     quiz = _.extend(quiz, req.body);
-
     quiz.save(function(err) {
         if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                quiz: quiz
-            });
+            return res.send(500, err);
         } else {
-            res.jsonp(quiz);
+            Quiz.load(quiz, function(err, quiz) {
+                if (err || !quiz) {
+                    return res.send(500, err);
+                }
+                if (!quiz) {
+                    return res.send(500, 'Erreur de chargement du quiz ' + qui);
+                }
+                res.jsonp(quiz);
+            });
         }
     });
 };
@@ -96,5 +104,31 @@ exports.all = function(req, res) {
         } else {
             res.jsonp(quizzes);
         }
+    });
+};
+
+/**
+ * List of questions NOT in quiz
+*/
+exports.getQuestionsByIds = function(req, res) {
+    var quiz = req.quiz;
+    var questionIds = [];
+
+    Quiz.loadQuestionsId(quiz, function(err, quiz) {
+        if (err || !quiz) {
+            return res.send(500, err);
+        }
+        if (!quiz) {
+            return res.send(500, 'Erreur de chargement du quiz ' + qui);
+        }
+        questionIds = quiz.questions;
+
+        Question.find({'_id': { $nin: questionIds}}).exec(function(err, questions) {
+            if (err) {
+                return res.send(500, err);
+            } else {
+                res.jsonp(questions);
+            }
+        });
     });
 };

@@ -27,6 +27,7 @@ app.config(['$stateProvider', '$urlRouterProvider',
             url: '/articles/:articleId',
             templateUrl: 'views/articles/view.html'
         })
+
         // Quizzes
         .state('all quizzes', {
             url: '/quizzes',
@@ -44,6 +45,29 @@ app.config(['$stateProvider', '$urlRouterProvider',
             url: '/quizzes/:quizId',
             templateUrl: 'views/quizzes/view.html'
         })
+        .state('add questions to quiz', {
+            url: '/quizzes/questions/:quizId',
+            templateUrl: 'views/quizzes/addquestions.html'
+        })
+
+        // Questions
+        .state('all questions', {
+            url: '/questions',
+            templateUrl: 'views/questions/list.html'
+        })
+        .state('create question', {
+            url: '/questions/create',
+            templateUrl: 'views/questions/create.html'
+        })
+        .state('edit question', {
+            url: '/questions/:questionId/edit',
+            templateUrl: 'views/questions/edit.html'
+        })
+        .state('question by id', {
+            url: '/questions/:questionId',
+            templateUrl: 'views/questions/view.html'
+        })
+
         // Home
         .state('home', {
             url: '/',
@@ -58,13 +82,18 @@ app.config(['$httpProvider', '$locationProvider',
         $httpProvider.interceptors.push(['$q', '$location', 'Alert', function($q, $location, Alert) {
             return {
                 'responseError': function(response) {
-                    if(response.status === 401) {
-                        $location.path('/');
-                        Alert.add('danger', 'Vous n\'êtes pas autorisé à faire cette action.', 3000);
-                        return $q.reject(response);
-                    }
-                    else {
-                        return $q.reject(response);
+                    switch (response.status) {
+                        case 401 :
+                            $location.path('/');
+                            Alert.add('danger', 'Vous n\'êtes pas autorisé à faire cette action.', 3000);
+                            return $q.reject(response);
+                            break;
+                        case 500 :
+                            Alert.add('danger', 'Une erreur est survenue.', 3000);
+                            return $q.reject(response);
+                            break;
+                        default :
+                            return $q.reject(response);
                     }
                 }
             };
