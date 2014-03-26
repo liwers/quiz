@@ -6,10 +6,6 @@ app.controller('HeaderController', ['$scope', 'Global', function ($scope, Global
     //menu pour utilisateur non authentifé
     var menuAll  = [
         {
-            'title': 'Articles',
-            'link': 'articles'
-        },
-        {
             'title': 'Quiz',
             'link': 'quizzes'
         }
@@ -17,19 +13,6 @@ app.controller('HeaderController', ['$scope', 'Global', function ($scope, Global
 
     //menu pour utilisateur authentié
     var menuUser = [
-        {
-            'title': 'Articles',
-            'submenu': [
-                {
-                    'title': 'Liste',
-                    'link': 'articles'
-                },
-                {
-                    'title': 'Créer un nouvel article',
-                    'link': 'articles/create'
-                }
-            ]
-        },
         {
             'title': 'Quiz',
             'submenu': [
