@@ -101,3 +101,56 @@ exports.user = function(req, res, next, id) {
             next();
         });
 };
+
+/**
+ * List of users
+ */
+exports.all = function(req, res) {
+    User.find().exec(function(err, users) {
+        if (err) {
+            res.render('error', {
+                status: 500
+            });
+        } else {
+            res.jsonp(users);
+        }
+    });
+};
+
+/**
+ * Update a user
+ */
+exports.update = function(req, res) {
+    var user = req.user;
+
+    user = _.extend(user, req.body);
+
+    user.save(function(err) {
+        if (err) {
+            return res.send('users/signup', {
+                errors: err.errors,
+                user: user
+            });
+        } else {
+            res.jsonp(user);
+        }
+    });
+};
+
+/**
+ * Delete a user
+ */
+exports.destroy = function(req, res) {
+    var user = req.user;
+
+    user.remove(function(err) {
+        if (err) {
+            return res.send('users/signup', {
+                errors: err.errors,
+                user: user
+            });
+        } else {
+            res.jsonp(user);
+        }
+    });
+};
