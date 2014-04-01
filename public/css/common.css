@@ -8,6 +8,10 @@
     width:100%
 }
 
+.span-glyphicon {
+    cursor: pointer;
+}
+
 h1 {
     text-align:center
 }

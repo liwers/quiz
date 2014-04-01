@@ -11,7 +11,8 @@ app.controller('UsersController', ['$scope', '$stateParams', '$location', 'Globa
 
     };
 
-    $scope.remove = function(user) {
+    $scope.remove = function(index) {
+        var user = $scope.users[index];
         if (user) {
             user.$remove();
 

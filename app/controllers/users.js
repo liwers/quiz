@@ -106,10 +106,11 @@ exports.user = function(req, res, next, id) {
  * List of users
  */
 exports.all = function(req, res) {
-    User.find().exec(function(err, users) {
+    User.find({}, 'username name email role').exec(function(err, users) {
         if (err) {
             return res.send(500, err);
         } else {
+            console.log(users);
             res.jsonp(users);
         }
     });

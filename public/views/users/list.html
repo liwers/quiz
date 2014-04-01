@@ -7,22 +7,28 @@
                 <th>Email</th>
                 <th>Rôle</th>
                 <th>Modifier</th>
-                <th>Ajouter</th>
+                <th>Supprimer</th>
             </tr>
         </thead>
         <tbody>
-            <tr data-ng-repeat="user in users">
-                <td  data-ng-if="user !== global.user">
-                    <input type="text" data-ng-model="user.username"/>
+            <tr data-ng-repeat="user in users" data-ng-class="{bgActiveUser: user._id === global.user._id}">
+                <td>
+                    {{user.username}}
                 </td>
                 <td>
-                    <input type="text" data-ng-model="user.name" />
+                    {{user.name}}
                 </td>
                 <td>
-                    <input type="text" data-ng-model="user.email" />
+                    {{user.email}}
                 </td>
                 <td>
-                    <input type="text" data-ng-model="user.role" />
+                    {{user.role}}
+                </td>
+                <td>
+                    <a data-ng-href="#!/users/{{user._id}}"><span class="glyphicon glyphicon-plus "></span></a>
+                </td>
+                <td>
+                    <span class="glyphicon glyphicon-remove span-glyphicon" data-ng-click="remove($index)"></span>
                 </td>
             </tr>
         </tbody>
