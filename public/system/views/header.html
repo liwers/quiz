@@ -6,18 +6,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/" mean-token="'site-title'">MEAN</a>
+        <a class="navbar-brand" href="/" mean-token="'site-title'">Quiz</a>
     </div>
 
     <div class="collapse navbar-collapse" data-ng-class="!navCollapsed && 'in'">
 
-<!--
-        <ul class="navbar-nav nav">
-          <li data-ng-repeat="item in menus.main" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
-              <a mean-token="item.link" ui-sref='{{item.link}}'>{{item.title}}</a>
-          </li>
-        </ul>
--->
         <ul class="nav navbar-nav">
           <li data-ng-repeat="item in menus.main" ui-route="/{{item.link}}" ng-class="{active: $uiRoute, dropdown: item.submenu}" menu-item="item"></li>
         </ul>
@@ -25,10 +18,10 @@
         <div data-ng-show="global.authenticated" mean-token-editable></div>
 
         <ul class="nav navbar-nav navbar-right" data-ng-hide="global.authenticated">
-            <li><a ui-sref='auth.register'>Register</a>
+            <li><a ui-sref='auth.register'>Créer un compte</a>
             </li>
             <li class="divider-vertical"></li>
-            <li><a ui-sref='auth.login'>Login</a>
+            <li><a ui-sref='auth.login'>S'identifier</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right" data-ng-show="global.authenticated">
@@ -37,7 +30,7 @@
                     {{global.user}} <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="/logout">Signout</a>
+                    <li><a href="/logout">Déconnexion</a>
                     </li>
                 </ul>
             </li>
