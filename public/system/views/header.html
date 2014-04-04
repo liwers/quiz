@@ -11,10 +11,15 @@
 
     <div class="collapse navbar-collapse" data-ng-class="!navCollapsed && 'in'">
 
+<!--
         <ul class="navbar-nav nav">
           <li data-ng-repeat="item in menus.main" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
               <a mean-token="item.link" ui-sref='{{item.link}}'>{{item.title}}</a>
           </li>
+        </ul>
+-->
+        <ul class="nav navbar-nav">
+          <li data-ng-repeat="item in menus.main" ui-route="/{{item.link}}" ng-class="{active: $uiRoute, dropdown: item.submenu}" menu-item="item"></li>
         </ul>
 
         <div data-ng-show="global.authenticated" mean-token-editable></div>
