@@ -23,6 +23,20 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
             },
             {
                 'roles': ['authenticated'],
+                'title': 'Quiz',
+                'submenu': [
+                    {
+                        'title': 'Liste',
+                        'link': 'all quizzes'
+                    },
+                    {
+                        'title': 'Créer un nouveau quiz',
+                        'link': 'create quiz'
+                    }
+                ]
+            },
+            {
+                'roles': ['authenticated'],
                 'title': 'Questions',
                 'submenu': [
                     {

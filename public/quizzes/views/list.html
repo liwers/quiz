@@ -1,0 +1,30 @@
+<section data-ng-controller="QuizzesController" data-ng-init="find()">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Quiz</th>
+                <th>Description</th>
+                <th>Créateur</th>
+                <th>Nombre de questions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="quiz in quizzes">
+                <td>
+                    <a data-ng-href="#!/quizzes/{{quiz._id}}">{{quiz.title}}</a>
+                </td>
+                <td>
+                    {{quiz.description}}
+                </td>
+                <td>
+                    {{quiz.user.name}}
+                </td>
+                <td>
+                    <a data-ng-href="#!/quizzes/questions/{{quiz._id}}">{{quiz.questions.length}}</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1 data-ng-hide="!quizzes || quizzes.length">Pas encore de quizz. <br> Pourquoi ne pas en <a href="/#!/quizzes/create">Créer un</a>?</h1>
+</section>

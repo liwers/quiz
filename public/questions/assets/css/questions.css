@@ -1,0 +1,17 @@
+.input-group-questions {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+.label-tag-question {
+    margin-right: 5px;
+}
+
+.panel-filtre {
+    width: 250px;
+    margin-left: 50px;
+}
+.link-all {
+    padding: 0;
+    font-weight: bold;
+}
