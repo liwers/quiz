@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean.questions').controller('QuestionsController', ['$scope', '$stateParams', '$location', 'Global', 'Questions', function ($scope, $stateParams, $location, Global, Questions) {
+angular.module('mean.questions').controller('QuestionsController', ['$scope', '$stateParams', '$location', 'Global', 'Questions', 'Alert', function ($scope, $stateParams, $location, Global, Questions, Alert) {
     $scope.global = Global;
     $scope.kinds = [
         {id: 'text', value: 'Texte'},
@@ -45,8 +45,10 @@ angular.module('mean.questions').controller('QuestionsController', ['$scope', '$
             tags: tags,
             explain: this.explain
         });
-        question.$save(function(response) {
-            $location.path('questions/' + response._id);
+        question.$save(function() {
+            var addMessage = '<a ui-sref="create question" href="#!/questions/create">Créer une nouvelle question ?</a>';
+            Alert.add('info', addMessage, 5000);
+            $location.path('questions');
         });
 
         this.title = '';

@@ -9,4 +9,4 @@ angular.element(document).ready(function() {
 
 });
 
-angular.module('mean', ['ngCookies', 'ngResource', 'ui.bootstrap', 'ui.router', 'mean.system', 'mean.articles','mean.auth','mean.questions','mean.quizzes']);
+angular.module('mean', ['ngCookies', 'ngResource', 'ngSanitize', 'ui.bootstrap', 'ui.router', 'mean.system', 'mean.articles','mean.auth','mean.questions','mean.quizzes']);
