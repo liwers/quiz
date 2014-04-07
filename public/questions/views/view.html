@@ -1,0 +1,38 @@
+<section data-ng-controller="QuestionsController" data-ng-init="findOne()">
+    <h2>{{question.question}}</h2>
+    <div>
+        <span class="label label-info label-tag-question" data-ng-repeat="tag in question.tags">
+            {{tag}}
+        </span>
+    </div>
+    <div>
+        <a class="btn" href="/#!/questions/{{question._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn" data-ng-click="remove();">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+    <div class="form-horizontal col-md-12">
+        <div class="form-group" ng-repeat="answer in question.answers">
+            <label class="col-md-2 control-label">Réponse n° {{$index + 1}}</label>
+            <div class="col-md-5 input-group input-group-questions">
+                <input type="text" class="form-control" data-ng-model="answer.answer" readonly>
+                 <div class="input-group-btn" data-toggle="buttons" data-ng-switch on="answer.isCorrect">
+                    <button data-ng-switch-default type="button" class="btn btn-danger" disabled>
+                        Fausse
+                    </button>
+                    <button data-ng-switch-when="true" type="button" class="btn btn-success" disabled>
+                        Correcte
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="question" class="col-md-2 control-label">Explication</label>
+            <div class="col-md-5">
+                <input type="text" class="form-control" data-ng-model="question.explain" readonly>
+            </div>
+        </div>
+    </div>
+</section>

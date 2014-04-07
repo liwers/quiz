@@ -6,24 +6,36 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
         $scope.menus = {};
 
         // Default hard coded menu items for main menu
-        var defaultMainMenu = [{
-            'roles': ['authenticated'],
-            'title': 'Articles',
-            'link': 'all articles'
-        }, {
-            'roles': ['authenticated'],
-            'title': 'Create New Article',
-            'link': 'create article'
-        }, {
-            'roles': ['authenticated'],
-            'title': 'Create New Article 2',
-            'submenu': [
-                {
-                    'title': 'Create New Article sous-menu',
-                    'link': 'create article'
-                }
-            ]
-        }];
+        var defaultMainMenu = [
+            {
+                'roles': ['authenticated'],
+                'title': 'Articles',
+                'submenu': [
+                    {
+                        'title': 'Liste',
+                        'link': 'all articles'
+                    },
+                    {
+                        'title': 'Créer un nouvel article',
+                        'link': 'create article'
+                    }
+                ]
+            },
+            {
+                'roles': ['authenticated'],
+                'title': 'Questions',
+                'submenu': [
+                    {
+                        'title': 'Liste',
+                        'link': 'all questions'
+                    },
+                    {
+                        'title': 'Créer une nouvelle question',
+                        'link': 'create question'
+                    }
+                ]
+            }
+        ];
 
         // Query menus added by modules. Only returns menus that user is allowed to see.
         function queryMenu(name, defaultMenu) {
@@ -34,7 +46,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
             }, function(menu) {
                 $scope.menus[name] = menu;
             });
-        };
+        }
 
         // Query server for menus and check permissions
         queryMenu('main', defaultMainMenu);
