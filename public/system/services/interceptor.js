@@ -22,7 +22,7 @@ angular.module('mean-factory-interceptor',[])
                     $location.url('/login');
                     return $q.reject(rejection);
                 }
-                if (response.status === 500) {
+                if (rejection.status === 500) {
                     Alert.add('danger', 'Une erreur est survenue.', 3000);
                     return $q.reject(rejection);
                 }

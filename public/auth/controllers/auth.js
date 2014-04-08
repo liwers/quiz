@@ -8,7 +8,7 @@ angular.module('mean.controllers.login', [])
         // Register the login() function
         $scope.login = function(){
             $http.post('/login', {
-                email: $scope.user.email,
+                username: $scope.user.username,
                 password: $scope.user.password
             })
                 .success(function(user){
@@ -19,7 +19,7 @@ angular.module('mean.controllers.login', [])
                     $location.url('/');
                 })
                 .error(function() {
-                    $scope.loginerror = 'Authentication failed.';
+                    $scope.loginerror = 'Authentication échouée.';
                 });
         };
     }])
@@ -46,7 +46,7 @@ angular.module('mean.controllers.login', [])
                 })
                 .error(function(error){
                     // Error: authentication failed
-                    if (error === 'Username already taken') {
+                    if (error === 'Login déjà utilisé') {
                         $scope.usernameError = error;
                     }
                     else {
