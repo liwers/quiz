@@ -6,11 +6,11 @@ var authorization = require('./middlewares/authorization');
 
 module.exports = function(app) {
 
-    app.get('/questions', questions.all);
-    app.post('/questions', authorization.requiresLogin, questions.create);
-    app.get('/questions/:questionId', questions.show);
-    app.put('/questions/:questionId', authorization.requiresLogin, questions.update);
-    app.del('/questions/:questionId', authorization.requiresLogin, questions.destroy);
+    app.get('/questions', authorization.requiresAdmin, questions.all);
+    app.post('/questions', authorization.requiresAdmin, questions.create);
+    app.get('/questions/:questionId', authorization.requiresAdmin, questions.show);
+    app.put('/questions/:questionId', authorization.requiresAdmin, questions.update);
+    app.del('/questions/:questionId', authorization.requiresAdmin, questions.destroy);
 
     // Finish with setting up the questionId param
     app.param('questionId', questions.question);

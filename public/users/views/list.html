@@ -1,0 +1,24 @@
+<section data-ng-controller="UsersController" data-ng-init="find()">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Utilisateur</th>
+                <th>Nom</th>
+                <th>Rôle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="user in users">
+                <td data-ng-class="{bgActiveUser: user._id === global.user._id}">
+                    {{user.username}}
+                </td>
+                <td data-ng-class="{bgActiveUser: user._id === global.user._id}">
+                    {{user.name}}
+                </td>
+                <td data-ng-class="{bgActiveUser: user._id === global.user._id}">
+                    <span data-ng-repeat="role in user.roles">{{role}}&nbsp;</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>

@@ -126,3 +126,16 @@ exports.addAdmin = function(req, res) {
         }
     });
 };
+
+/**
+ * List of users
+ */
+exports.all = function(req, res) {
+    User.find({}, 'username name roles').exec(function(err, users) {
+        if (err) {
+            return res.send(500, err);
+        } else {
+            res.jsonp(users);
+        }
+    });
+};

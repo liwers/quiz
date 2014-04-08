@@ -1,7 +1,7 @@
 'use strict';
 
 //Setting up route
-angular.module('mean.questions').config(['$stateProvider', '$urlRouterProvider',
+angular.module('mean.articles').config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
 
         //================================================
@@ -32,30 +32,9 @@ angular.module('mean.questions').config(['$stateProvider', '$urlRouterProvider',
 
         // states for my app
         $stateProvider
-            .state('all questions', {
-                url: '/questions',
-                templateUrl: 'public/questions/views/list.html',
-                resolve: {
-                    loggedin: checkIsAdmin
-                }
-            })
-            .state('create question', {
-                url: '/questions/create',
-                templateUrl: 'public/questions/views/create.html',
-                resolve: {
-                    loggedin: checkIsAdmin
-                }
-            })
-            .state('edit question', {
-                url: '/questions/:questionId/edit',
-                templateUrl: 'public/questions/views/edit.html',
-                resolve: {
-                    loggedin: checkIsAdmin
-                }
-            })
-            .state('question by id', {
-                url: '/questions/:questionId',
-                templateUrl: 'public/questions/views/view.html',
+            .state('all users', {
+                url: '/users',
+                templateUrl: 'public/users/views/list.html',
                 resolve: {
                     loggedin: checkIsAdmin
                 }

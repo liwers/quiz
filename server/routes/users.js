@@ -12,6 +12,12 @@ module.exports = function(app, passport) {
     // Setting up the users api
     app.post('/register', users.create);
 
+    // Add an admin if nobody is admin
+    app.get('/addadmin', authorization.requiresLogin, users.addAdmin);
+
+    // Get all users
+    app.get('/users', authorization.requiresAdmin, users.all);
+
     // Setting up the userId param
     app.param('userId', users.user);
 
@@ -20,8 +26,10 @@ module.exports = function(app, passport) {
         res.send(req.isAuthenticated() ? req.user.name : '0');
     });
 
-    // Add an admin if nobody is admin
-    app.get('/addadmin', authorization.requiresLogin, users.addAdmin);
+    // AngularJS route to check for admin authentication
+    app.get('/isadmin', function(req, res) {
+        res.send(!req.isAuthenticated() || !req.user.hasRole('admin') ? '0' : req.user.name);
+    });
 
     // Setting the local strategy route
     app.post('/login', passport.authenticate('local', {

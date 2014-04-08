@@ -22,7 +22,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
                 ]
             },
             {
-                'roles': ['authenticated'],
+                'roles': ['admin'],
                 'title': 'Quiz',
                 'submenu': [
                     {
@@ -36,7 +36,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
                 ]
             },
             {
-                'roles': ['authenticated'],
+                'roles': ['admin'],
                 'title': 'Questions',
                 'submenu': [
                     {
@@ -48,6 +48,11 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
                         'link': 'create question'
                     }
                 ]
+            },
+            {
+                'roles': ['admin'],
+                'title': 'Utilisateurs',
+                'link': 'all users'
             }
         ];
 
