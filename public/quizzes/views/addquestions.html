@@ -2,7 +2,7 @@
     <h2>{{quiz.title}}</h2>
     <span>{{quiz.description}}</span>
     <br><br>
-    <div class="panel panel-primary">
+    <div class="panel panel-primary table-responsive">
         <div class="panel-heading"><strong>Questions présentes dans le quiz</strong></div>
         <div ng-show="!quiz.questions.length">&nbsp;Aucune question présente dans le quiz.</div>
         <table class="table table-striped" ng-show="quiz.questions.length">
@@ -42,7 +42,7 @@
         </table>
     </div>
 
-    <div class="panel panel-primary">
+    <div class="panel panel-primary table-responsive">
         <div class="panel-heading">
             <strong>Questions à ajouter</strong>
             <div class="pull-right">
