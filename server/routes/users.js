@@ -2,6 +2,7 @@
 
 // User routes use users controller
 var users = require('../controllers/users');
+var authorization = require('./middlewares/authorization');
 
 module.exports = function(app, passport) {
 
@@ -18,6 +19,9 @@ module.exports = function(app, passport) {
     app.get('/loggedin', function(req, res) {
         res.send(req.isAuthenticated() ? req.user.name : '0');
     });
+
+    // Add an admin if nobody is admin
+    app.get('/addadmin', authorization.requiresLogin, users.addAdmin);
 
     // Setting the local strategy route
     app.post('/login', passport.authenticate('local', {

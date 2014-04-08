@@ -100,3 +100,29 @@ exports.user = function(req, res, next, id) {
             next();
         });
 };
+
+/**
+ * Add admin if no user with admin roles
+ */
+exports.addAdmin = function(req, res) {
+    User.find({roles: 'admin'}).count().exec(function(err, count) {
+        if (err) {
+            res.render('error', {
+                status: 500
+            });
+        } else {
+            if (count === 0) {
+                var user = req.user;
+                user.roles.push('admin');
+                user.save(function(err) {
+                    if (err) {
+                        res.render('error', {
+                            status: 500
+                        });
+                    }
+                });
+            }
+            return res.redirect('/');
+        }
+    });
+};
