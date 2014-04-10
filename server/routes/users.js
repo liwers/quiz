@@ -18,6 +18,9 @@ module.exports = function(app, passport) {
     // Get all users
     app.get('/users', authorization.requiresAdmin, users.all);
 
+    // Update a user
+    app.post('/users',authorization.requiresAdmin, users.update);
+
     // Setting up the userId param
     app.param('userId', users.user);
 

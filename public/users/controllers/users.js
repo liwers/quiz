@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean.users').controller('UsersController', ['$scope', '$stateParams', '$location', 'Global', 'Users', 'Alert', function ($scope, $stateParams, $location, Global, Users, Alert) {
+angular.module('mean.users').controller('UsersController', ['$scope', '$stateParams', '$location', 'Global', 'Users', 'Alert', '$modal', function ($scope, $stateParams, $location, Global, Users, Alert, $modal) {
     $scope.global = Global;
 
     $scope.find = function() {
@@ -8,6 +8,31 @@ angular.module('mean.users').controller('UsersController', ['$scope', '$statePar
             $scope.users = users;
         });
 
+    };
+
+
+    $scope.open = function (index) {
+
+        var user = $scope.users[index];
+
+        var modalInstance = $modal.open({
+            templateUrl: 'public/users/views/modal-edit.html',
+            controller: 'ModalUsersController',
+            resolve: {
+                user: function () {
+                    return user;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (user) {
+            //OK
+            user.$save(function() {
+                //
+            });
+        }, function () {
+            //Cancel
+        });
     };
 
 }]);

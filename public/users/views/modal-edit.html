@@ -1,0 +1,43 @@
+<div class="modal-header">
+    <h3>Modifier {{user.username}}</h3>
+</div>
+<div class="modal-body">
+    <div class="signup form-horizontal">
+        <div class="form-group">
+            <label for="username" class="col-md-3 control-label">Login</label>
+            <div class="col-md-8">
+                <input id="username" type="text" name="username" placeholder="Login" class="form-control" ng-model="user.username"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="name" class="col-md-3 control-label">Nom</label>
+            <div class="col-md-8">
+                <input id="name" type="text" name="name" placeholder="Nom" class="form-control" ng-model="user.name"/>
+            </div>
+        </div>
+
+        <div class="form-group" ng-repeat="role in roles">
+            <label for="role-{{$index + 1}}" class="col-md-3 control-label">Rôle n° {{$index + 1}}</label>
+            <div class="col-md-8 input-group input-group-questions">
+                <input type="text" class="form-control" data-ng-model="role.value" id="role-{{$index + 1}}" placeholder="Rôle n° {{$index + 1}}" required>
+                 <div class="input-group-btn" data-toggle="buttons">
+                    <button class="btn btn-default" data-ng-click="removeRole($index)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-7">
+                <button ng-click="roles.push({})" class="btn btn-default">Ajouter un rôle</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

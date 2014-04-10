@@ -4,7 +4,8 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    _ = require('lodash');
 
 /**
  * Auth callback
@@ -78,6 +79,7 @@ exports.create = function(req, res, next) {
         res.status(200);
     });
 };
+
 /**
  * Send User
  */
@@ -138,4 +140,37 @@ exports.all = function(req, res) {
             res.jsonp(users);
         }
     });
+};
+
+/**
+ * Update user
+ */
+exports.update = function(req, res) {
+    var id = req.body._id;
+
+    User.findOne({_id: id}).exec(function(err, user) {
+        if (err) return res.status(500);
+        if (!user) res.status(500).send('Failed to load User ' + id);
+
+        user = _.extend(user, req.body);
+
+        // Hard coded for now. Will address this with the user permissions system in v0.3.5
+        user.save(function(err) {
+            if (err) {
+                switch (err.code) {
+                    case 11000:
+                    case 11001:
+                        res.status(500).send('Login déjà utilisé');
+                        break;
+                    default:
+                        res.status(500).send('Erreur');
+                }
+
+                return res.status(500);
+            }
+            res.status(200);
+        });
+    });
+
+
 };
