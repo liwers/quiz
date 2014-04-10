@@ -166,9 +166,10 @@ exports.update = function(req, res) {
                         res.status(500).send('Erreur');
                 }
 
-                return res.status(500);
+                res.status(500).send('Erreur');
             }
-            res.status(200);
+            res.status(200).send();
+
         });
     });
 

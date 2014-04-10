@@ -27,8 +27,8 @@ angular.module('mean.users').controller('UsersController', ['$scope', '$statePar
 
         modalInstance.result.then(function (user) {
             //OK
-            user.$save(function() {
-                //
+            user.$save(function(user) {
+                Alert.add('success', user.username  + ' a été correctement modifié', 3000);
             });
         }, function () {
             //Cancel
