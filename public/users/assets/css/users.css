@@ -1,3 +1,6 @@
 .table a {
      cursor: pointer;
 }
+.bgActiveUser {
+    background-color: #d9edf7 !important;
+}
